@@ -61,6 +61,9 @@
     <moduleBuilder builderClass="org.jetbrains.plugins.gradle.service.project.wizard.InternalGradleModuleBuilder"/>
     <projectImportProvider implementation="org.jetbrains.plugins.gradle.service.project.wizard.JavaGradleProjectImportProvider"/>
 
+    <psi.referenceContributor language="Groovy"
+                              implementation="org.jetbrains.plugins.gradle.service.resolve.GradleReferenceContributor"/>
+
     <!--Gradle Test Runner-->
     <testActionProvider implementation="org.jetbrains.plugins.gradle.execution.test.runner.OpenGradleTestResultActionProvider"/>
 
