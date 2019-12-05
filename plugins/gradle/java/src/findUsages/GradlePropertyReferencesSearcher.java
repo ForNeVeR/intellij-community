@@ -1,5 +1,5 @@
 // Copyright 2000-2019 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file.
-package org.jetbrains.plugins.groovy.findUsages;
+package org.jetbrains.plugins.gradle.findUsages;
 
 import com.intellij.lang.properties.psi.Property;
 import com.intellij.openapi.application.QueryExecutorBase;
@@ -13,7 +13,6 @@ import com.intellij.psi.search.UsageSearchContext;
 import com.intellij.psi.search.searches.ReferencesSearch;
 import com.intellij.util.Processor;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.plugins.groovy.lang.psi.api.statements.expressions.GrReferenceExpression;
 
 public class GradlePropertyReferencesSearcher extends QueryExecutorBase<PsiReference, ReferencesSearch.SearchParameters> {
 
@@ -56,8 +55,8 @@ public class GradlePropertyReferencesSearcher extends QueryExecutorBase<PsiRefer
     public boolean processTextOccurrence(@NotNull PsiElement element,
                                          int offsetInElement,
                                          @NotNull Processor<? super PsiReference> consumer) {
-      if (element instanceof GrReferenceExpression) {
-        if (!consumer.process((GrReferenceExpression)element)) {
+      if (element instanceof PsiReference) {
+        if (!consumer.process((PsiReference)element)) {
           return false;
         }
       }
@@ -70,7 +69,7 @@ public class GradlePropertyReferencesSearcher extends QueryExecutorBase<PsiRefer
     private final String extension;
 
     FileByExtensionSearchScope(GlobalSearchScope scope,
-                                      @NotNull String extension) {
+                               @NotNull String extension) {
       super(scope);
       this.extension = extension;
     }
